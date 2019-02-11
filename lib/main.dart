@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_lab01/ui/first_screen.dart';
+import 'package:flutter_lab01/ui/my_custom_form.dart';
+import 'package:flutter_lab01/ui/second_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -20,112 +23,95 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => MyCustomForm(),
+        '/second': (context) => SecondScreen(),
+
+      },
     );
   }
 }
 
-// class MyHomePage extends StatefulWidget {
-//   @override
-//   State<StatefulWidget> createState() {
-//     // TODO: implement createState
-//     return MyHomePageState();
-//   }
 
-// }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key key, this.title}) : super(key: key);
+
+  // This widget is the home page of your application. It is stateful, meaning
+  // that it has a State object (defined below) that contains fields that affect
+  // how it looks.
+
+  // This class is the configuration for the state. It holds the values (in this
+  // case the title) provided by the parent (in this case the App widget) and
+  // used by the build method of the State. Fields in a Widget subclass are
+  // always marked "final".
+
+  final String title;
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    return DefaultTabController(length:  3, child: Scaffold(
+    // This method is rerun every time setState is called, for instance as done
+    // by the _incrementCounter method above.
+    //
+    // The Flutter framework has been optimized to make rerunning build methods
+    // fast, so that you can just rebuild anything that needs updating rather
+    // than having to individually change instances of widgets.
+    int counter = 0;
+    return Scaffold(
       appBar: AppBar(
-        title: Text(
-          "Tabbar"
-        ), 
-        bottom:  
-        TabBar(
-          tabs: <Widget> [
-            Tab(
-              icon : Icon(Icons.camera),
-              text: "Camera",
-            ),
-            Tab(
-              icon : Icon(Icons.add_alarm),
-              text: "Alarm",
-            ),
-            Tab(
-              icon : Icon(Icons.account_box),
-              text: "Box",
-            ),
+        title: Text("Hello World text bebe!!!"),
+      ),
+      body: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Text('$counter'),
+            Text("Value 2 "),
+            Text("Value 3"),
           ],
         ),
       ),
-      body: TabBarView(
-        children: <Widget>[
-          Icon(Icons.camera),
-          Icon(Icons.add_alarm),
-          Icon(Icons.account_box),
-        ],
-      )
+      floatingActionButton: IconButton(
+        icon: Icon(Icons.add),
+        onPressed: (){
+          counter++;
+          print("counter value $counter");
+        }
+      ),
+    );
+  return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("TabBar"),
+            bottom: TabBar(tabs: <Widget>[
+              Tab(
+               icon: Icon(Icons.camera), text: "Camera",
+              ),
+              Tab(
+                icon: Icon(Icons.add_alarm),
+              ),
+              Tab(
+                icon: Icon(Icons.add_alarm),
+              )
+            ],
+          ),
+        ),
+        body: TabBarView(
+          children: <Widget>[
+            Icon(Icons.camera),
+            Icon(Icons.add_alarm),
+            Icon(Icons.account_box)
+          ],
+        ),
       ),
     );
   }
-
 }
-
-// class MyHomePageState extends State<MyHomePage> {
-//  int counter = 0;
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text("Hello Wolrd"),
-//       ),
-//       body: Column(
-//         mainAxisAlignment:  MainAxisAlignment.spaceAround,
-//         crossAxisAlignment: CrossAxisAlignment.center,
-//         children: <Widget>[
-//           Text("$counter"),
-//           Text("Dump"),
-//           Text("Mark"),
-//           Text("GAME"),
-//         ],
-//       ),
-//       floatingActionButton: FloatingActionButton(child: Icon(Icons.add),
-//       onPressed: () {
-//         setState(() {
-//           counter++;
-//         });
-//         print("counter value $counter");
-//       }
-//       ),
-//     );
-//   }
-// }
-
-// class MyHomePage extends StatelessWidget {
-
-//   int counter = 0;
-
-//   @override
-//   Widget build(BuildContext context) {
-    
-
-
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text("Hello Wolrd"),
-//       ),
-//       body: Text("$counter"),
-//       floatingActionButton: IconButton(icon: Icon(Icons.add),
-//       onPressed: () {
-//         counter++;
-//         print("counter value $counter");
-//       }
-//       ),
-//     );
-//   }
-
-// }
-

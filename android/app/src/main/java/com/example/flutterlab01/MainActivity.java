@@ -1,4 +1,4 @@
-package com.example.lab01;
+package com.example.flutterlab01;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;
